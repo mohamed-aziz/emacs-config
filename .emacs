@@ -12,7 +12,10 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("71ecffba18621354a1be303687f33b84788e13f40141580fa81e7840752d31bf" "ebfa8d0654af120fff174bc7ec08bf1fef63df97bdeff63161dbff6f61cef747" default))))
+    ("71ecffba18621354a1be303687f33b84788e13f40141580fa81e7840752d31bf" "ebfa8d0654af120fff174bc7ec08bf1fef63df97bdeff63161dbff6f61cef747" default)))
+ '(package-selected-packages
+   (quote
+    (php-eldoc flymake-php php+-mode web-mode plan9-theme php-auto-yasnippets nyan-mode neotree magit cyberpunk-theme 2048-game))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -84,9 +87,32 @@
 (require 'flymake-php)
 (add-hook 'php-mode-hook 'flymake-php-load)
 
-;; company-php for auto complete
-(add-hook 'php-mode-hook
-          '(lambda ()
-             (require 'company-php)
-             (company-mode t)
-             (add-to-list 'company-backends 'company-ac-php-backend )))
+;; my initial buffer
+(setq initial-buffer-choice "c:\Emacs/lol.jpg")
+
+;; play some hard rock music
+(defconst acdc-music-file "c:/Emacs/acdc.mp3")
+
+(defvar acdc-music-process nil)
+
+(defun acdc-start-music ()
+  (interactive)
+  (unless acdc-music-process
+    (setq acdc-music-process (start-process-shell-command "acdc-music" "acdc-music" (concat "mplayer.exe " acdc-music-file " -loop 0")))))
+
+
+(defun acdc-stop-music ()
+  (interactive)
+  (when acdc-music-process
+    (delete-process acdc-music-process)
+    (setq acdc-music-process nil)))
+
+(acdc-start-music)
+
+
+;; set up my linum-mode
+
+(require 'linum)
+(add-hook 'prog-mode-hook 'linum-mode)
+(add-hook 'text-mode-hook 'linum-mode)
+(setq linum-format " %d ")
