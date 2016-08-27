@@ -13,15 +13,16 @@
  '(custom-safe-themes
    (quote
     ("345f8f92edc3508574c61850b98a2e0a7a3f5ba3bb9ed03a50f6e41546fe2de0" "cdbd0a803de328a4986659d799659939d13ec01da1f482d838b68038c1bb35e8" "71ecffba18621354a1be303687f33b84788e13f40141580fa81e7840752d31bf" "ebfa8d0654af120fff174bc7ec08bf1fef63df97bdeff63161dbff6f61cef747" default)))
+ '(org-agenda-files (quote ("c:/Users/Mohamed Aziz Knani/px1/roadmap.org")))
  '(package-selected-packages
    (quote
-    (company-php dracula-theme cider zenburn-theme php-eldoc flymake-php php+-mode web-mode plan9-theme php-auto-yasnippets nyan-mode neotree magit cyberpunk-theme 2048-game))))
+    (elpy company-php dracula-theme cider zenburn-theme php-eldoc flymake-php php+-mode web-mode plan9-theme php-auto-yasnippets nyan-mode neotree magit cyberpunk-theme 2048-game))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "outline" :family "Anonymous Pro")))))
+ '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "outline" :family "Inconsolata")))))
 
 ;; Melpa packages repo
 ;; On my windows I had to install gnutls binaries (to debug use function toggle-debug-on-error)
@@ -33,7 +34,7 @@
 ;; Use plan9 theme I love it, my favourite light theme
 ;; (load-theme 'plan9)
 ;; I Use cyberpung theme I love it, my favourite dark theme
-(load-theme 'dracula)
+(load-theme 'zenburn)
 
 
 ;; disable scroll bar mode
@@ -56,10 +57,12 @@
 
 
 ;; WEB mode config mainly for php and jinja2 for python
-
+(add-to-list 'auto-mode-alist '("\\.jhtml\\'" . web-mode))
 (setq web-mode-engines-alist
       '(("php"    . "\\.phtml\\'")
-	))
+        ("django"  . "\\.jhtml\\'")) ;for jinja2 files
+      )
+
 (setq web-mode-enable-current-element-highlight t)
 
 
@@ -109,7 +112,7 @@
     (delete-process acdc-music-process)
     (setq acdc-music-process nil)))
 
-(acdc-start-music)
+;; (acdc-start-music)
 
 
 ;; set up my linum-mode
@@ -153,4 +156,9 @@
 
 (setq linum-format 'linum-highlight-current-line)
 
+(elpy-enable)
 
+(setq elpy-rpc-backend "jedi")
+
+
+(put 'upcase-region 'disabled nil)
