@@ -12,7 +12,8 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("345f8f92edc3508574c61850b98a2e0a7a3f5ba3bb9ed03a50f6e41546fe2de0" "cdbd0a803de328a4986659d799659939d13ec01da1f482d838b68038c1bb35e8" "71ecffba18621354a1be303687f33b84788e13f40141580fa81e7840752d31bf" "ebfa8d0654af120fff174bc7ec08bf1fef63df97bdeff63161dbff6f61cef747" default)))
+    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "12b7ed9b0e990f6d41827c343467d2a6c464094cbcc6d0844df32837b50655f9" "b2db1708af2a7d50cac271be91908fffeddb04c66cb1a853fff749c7ad6926ae" "345f8f92edc3508574c61850b98a2e0a7a3f5ba3bb9ed03a50f6e41546fe2de0" "cdbd0a803de328a4986659d799659939d13ec01da1f482d838b68038c1bb35e8" "71ecffba18621354a1be303687f33b84788e13f40141580fa81e7840752d31bf" "ebfa8d0654af120fff174bc7ec08bf1fef63df97bdeff63161dbff6f61cef747" default)))
+ '(elpy-rpc-timeout 10)
  '(org-agenda-files (quote ("c:/Users/Mohamed Aziz Knani/px1/roadmap.org")))
  '(package-selected-packages
    (quote
@@ -22,7 +23,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "outline" :family "Inconsolata")))))
+ '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "Hack")))))
 
 ;; Melpa packages repo
 ;; On my windows I had to install gnutls binaries (to debug use function toggle-debug-on-error)
@@ -32,9 +33,9 @@
 
 
 ;; Use plan9 theme I love it, my favourite light theme
-;; (load-theme 'plan9)
+(load-theme 'meacupla)			;
 ;; I Use cyberpung theme I love it, my favourite dark theme
-(load-theme 'zenburn)
+(load-theme 'danneskjold)
 
 
 ;; disable scroll bar mode
@@ -47,6 +48,9 @@
 ;; default ac mode
 (ac-config-default)
 
+;; removes python-mode symbol from ac-modes symbol because I use company mode.
+(setq ac-modes (delq 'python-mode ac-modes))
+
 ;; nyan mode YAY (I have to fork this and make a mooGNU)!
 
 (nyan-mode)
@@ -56,8 +60,13 @@
 (nyan-toggle-wavy-trail)
 
 
+;; web-mode + emmet-mode
+(define-derived-mode myWebMode
+  web-mode "Web-Mode+Emmet" "Web Mode + Emmet"
+  (emmet-mode))
+
 ;; WEB mode config mainly for php and jinja2 for python
-(add-to-list 'auto-mode-alist '("\\.jhtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jhtml\\'" . myWebMode))
 (setq web-mode-engines-alist
       '(("php"    . "\\.phtml\\'")
         ("django"  . "\\.jhtml\\'")) ;for jinja2 files
@@ -93,7 +102,7 @@
 (add-hook 'php-mode-hook 'flymake-php-load)
 
 ;; my initial buffer
-(setq initial-buffer-choice "c:\Emacs/lol.jpg")
+;; (setq initial-buffer-choice "c:\Emacs/lol.jpg")
 
 ;; play some hard rock music
 (defconst acdc-music-file "c:/Emacs/acdc.mp3")
@@ -117,9 +126,9 @@
 
 ;; set up my linum-mode
 
-(require 'linum)
-(add-hook 'prog-mode-hook 'linum-mode)
-(add-hook 'text-mode-hook 'linum-mode)
+;; (require 'linum)
+;; (add-hook 'prog-mode-hook 'linum-mode)
+;; (add-hook 'text-mode-hook 'linum-mode)
 
 
 ;; code written by Emanuele Tomasi
@@ -154,11 +163,25 @@
     (propertize (format (concat " " "%" linum-border-width "d" " ") line-number)
                 'face face)))
 
-(setq linum-format 'linum-highlight-current-line)
+;; (setq linum-format 'linum-highlight-current-line)
 
 (elpy-enable)
 
 (setq elpy-rpc-backend "jedi")
 
-
 (put 'upcase-region 'disabled nil)
+
+
+(require 'ace-jump-mode)
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+
+
+(require 'git-gutter)
+(global-git-gutter-mode +1)
+
+
+
+;; helm config
+(global-set-key (kbd "M-x") #'helm-M-x)
+(global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
+(global-set-key (kbd "C-x C-f") #'helm-find-files)
