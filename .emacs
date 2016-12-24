@@ -12,18 +12,18 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "12b7ed9b0e990f6d41827c343467d2a6c464094cbcc6d0844df32837b50655f9" "b2db1708af2a7d50cac271be91908fffeddb04c66cb1a853fff749c7ad6926ae" "345f8f92edc3508574c61850b98a2e0a7a3f5ba3bb9ed03a50f6e41546fe2de0" "cdbd0a803de328a4986659d799659939d13ec01da1f482d838b68038c1bb35e8" "71ecffba18621354a1be303687f33b84788e13f40141580fa81e7840752d31bf" "ebfa8d0654af120fff174bc7ec08bf1fef63df97bdeff63161dbff6f61cef747" default)))
+    ("1db337246ebc9c083be0d728f8d20913a0f46edc0a00277746ba411c149d7fe5" "eae831de756bb480240479794e85f1da0789c6f2f7746e5cc999370bbc8d9c8a" "38e64ea9b3a5e512ae9547063ee491c20bd717fe59d9c12219a0b1050b439cdd" "cc60d17db31a53adf93ec6fad5a9cfff6e177664994a52346f81f62840fe8e23" "715fdcd387af7e963abca6765bd7c2b37e76154e65401cd8d86104f22dd88404" "c2e17e5644f2aa5f37da75e7135f19e0a9b98ddeeb5862e912192ee4accfc0f8" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "12b7ed9b0e990f6d41827c343467d2a6c464094cbcc6d0844df32837b50655f9" "b2db1708af2a7d50cac271be91908fffeddb04c66cb1a853fff749c7ad6926ae" "345f8f92edc3508574c61850b98a2e0a7a3f5ba3bb9ed03a50f6e41546fe2de0" "cdbd0a803de328a4986659d799659939d13ec01da1f482d838b68038c1bb35e8" "71ecffba18621354a1be303687f33b84788e13f40141580fa81e7840752d31bf" "ebfa8d0654af120fff174bc7ec08bf1fef63df97bdeff63161dbff6f61cef747" default)))
  '(elpy-rpc-timeout 10)
  '(org-agenda-files (quote ("c:/Users/Mohamed Aziz Knani/px1/roadmap.org")))
  '(package-selected-packages
    (quote
-    (elpy company-php dracula-theme cider zenburn-theme php-eldoc flymake-php php+-mode web-mode plan9-theme php-auto-yasnippets nyan-mode neotree magit cyberpunk-theme 2048-game))))
+    (django-mode projectile ample-zen-theme afternoon-theme base16-theme emmet-mode lua-mode cherry-blossom-theme markdown-mode multi-term snippet hamburg-theme elpy company-php dracula-theme cider zenburn-theme php-eldoc flymake-php php+-mode web-mode plan9-theme php-auto-yasnippets nyan-mode neotree magit cyberpunk-theme 2048-game))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "Hack")))))
+ '(default ((t (:inherit nil :stipple nil :background "#212121" :foreground "#bdbdb3" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :family "tewi")))))
 
 ;; Melpa packages repo
 ;; On my windows I had to install gnutls binaries (to debug use function toggle-debug-on-error)
@@ -33,10 +33,13 @@
 
 
 ;; Use plan9 theme I love it, my favourite light theme
-(load-theme 'meacupla)			;
-;; I Use cyberpung theme I love it, my favourite dark theme
-(load-theme 'danneskjold)
+;; (load-theme 'meacupla)			;
+(load-theme 'ample-zen)
 
+
+;; disable the menu bar
+
+(menu-bar-mode 0)
 
 ;; disable scroll bar mode
 (scroll-bar-mode 0)
@@ -185,3 +188,14 @@
 (global-set-key (kbd "M-x") #'helm-M-x)
 (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
+(global-set-key (kbd "C-S-x") #'helm-show-kill-ring)
+
+(yas-global-mode)
+
+
+(setenv "WORKON_HOME" "/home/mohamed/vEnvs")
+
+
+(setenv "PROJECT_HOME" "/home/mohamed/Projects")
+
+(winner-mode 1)
